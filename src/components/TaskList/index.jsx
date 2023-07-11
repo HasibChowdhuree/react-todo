@@ -1,19 +1,26 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import TaskCard from '../TaskCard';
+import PropTypes from 'prop-types';
 
-const TaskList = ({ tasks }) => {
-    return (
-        <div>
-            {tasks.map((task) => (
-                <TaskCard key={task.id} task={task} />
-            ))}
-        </div>
-    );
+import "./index.scss";
+
+const TaskList = () => {
+  const tasks = useSelector(state => state.tasks);
+
+  return (
+    tasks.map((task) => (
+      <TaskCard key={task.id} task={task} />
+    ))
+  );
 };
 
-const mapStateToProps = (state) => ({
-    tasks: state.tasks
-});
+TaskList.propTypes = {
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ),
+};
 
-export default connect(mapStateToProps)(TaskList);
+export default TaskList;

@@ -1,41 +1,51 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { addTask } from '../../store/actions';
+import { sanitizeText } from '../../utils/helpers/sanitizeText'
+import './index.scss';
 
-const AddTask = ({ addTask }) => {
-    const [title, setTitle] = useState('');
-    const [isFormOpen, setIsFormOpen] = useState(false);
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      if (title.trim() === '') return;
-      addTask(title);
-      setTitle('');
-      setIsFormOpen(false);
-    };
-  
-    const toggleForm = () => {
-      setIsFormOpen(!isFormOpen);
-    };
-  
-    return (
-      <div>
-        <button onClick={toggleForm}>
-          {isFormOpen ? 'Close Form' : 'Open Form'}
-        </button>
-        {isFormOpen && (
+const AddTask = ({ isFormOpen, setIsFormOpen }) => {
+  const dispatch = useDispatch();
+  const [title, setTitle] = useState('');
+  const [error, setError] = useState(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const sanitizedTitle = sanitizeText(title);
+    if (sanitizedTitle === '') {
+      setError("Invalid Text");
+      return;
+    }
+    dispatch(addTask(sanitizedTitle));
+    setTitle('');
+    setIsFormOpen(false);
+  };
+
+  return (
+    <>
+      {isFormOpen && (
+        <div className="task-form">
           <form onSubmit={handleSubmit}>
-            <input
+            <textarea
+              className='task-form__textarea'
               type="text"
               placeholder="Add a task"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
+            {error && <small className="task-form__error">{error}</small>}
             <button type="submit">Add Task</button>
           </form>
-        )}
-      </div>
-    );
-  };
-  
-  export default connect(null, { addTask })(AddTask);
+        </div>
+      )}
+    </>
+  );
+};
+
+AddTask.propTypes = {
+  isFormOpen: PropTypes.bool.isRequired,
+  setIsFormOpen: PropTypes.func.isRequired,
+};
+
+export default AddTask;
