@@ -9,6 +9,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         tasks: [...state.tasks, action.payload],
       };
+    case 'DELETE_TASK':
+      // Add logic to delete a task
+      return {
+        ...state,
+        tasks: state.tasks.filter(task => task.id !== action.payload)
+      };
     default:
       return state;
   }
