@@ -1,24 +1,24 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import { addTask } from "../../store/actions";
-import { sanitizeText } from "../../utils/helpers/sanitizeText"
+import { addTask } from "/src/store/actions";
+import { sanitizeText } from "/src/utils/helpers/sanitizeText"
 import "./index.scss";
 
 const AddTask = ({ isFormOpen, setIsFormOpen }) => {
   const dispatch = useDispatch();
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(null);
   const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const sanitizedTitle = sanitizeText(title);
-    if (sanitizedTitle === "") {
+    if (sanitizedTitle === null) {
       setError("Invalid Text");
       return;
     }
     dispatch(addTask(sanitizedTitle));
-    setTitle("");
+    setTitle(null);
     setIsFormOpen(false);
   };
 

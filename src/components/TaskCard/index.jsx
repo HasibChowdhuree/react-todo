@@ -16,7 +16,7 @@ TaskCard.propTypes = {
   task: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    createdDate: PropTypes.string,
+    createdDate: PropTypes.instanceOf(Date).isRequired,
   }),
 };
 
