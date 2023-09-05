@@ -1,18 +1,14 @@
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { deleteTask, setTaskDone } from "@store/actions";
-import { COMPLETED_TASKS, INCOMPLETED_TASKS } from "@utils/constants/texts";
+import { filterTasks } from "@utils/helpers/filterTasks";
 import TaskCard from "@components/TaskCard";
 import "./index.scss";
 
 const TaskList = ({ tasks, visibleTaskRange, isFormOpen, filter }) => {
   const dispatch = useDispatch();
 
-  const filteredTasks = tasks.filter((task) => {
-    if (filter === COMPLETED_TASKS) return task.isDone;
-    if (filter === INCOMPLETED_TASKS) return !task.isDone;
-    return true;
-  });
+  const filteredTasks = filterTasks(tasks, filter);
 
   let rangeOfTasks = visibleTaskRange;
   if (isFormOpen) {
