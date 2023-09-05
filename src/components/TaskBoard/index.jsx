@@ -4,7 +4,7 @@ import TaskList from "@components/TaskList";
 import AddTask from "@components/Addtask";
 import { MAX_TASK_PER_PAGE } from "@utils/constants/values";
 import TextButton from "@components/TextButton";
-import "./index.scss"
+import "./index.scss";
 
 const TaskBoard = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -44,10 +44,7 @@ const TaskBoard = () => {
   return (
     <div className="task-board">
       <div className="task-board__create-button-container margin-bottom">
-        <TextButton
-          buttonText={"+ Create"}
-          onClick={handleOpenForm}
-        />
+        <TextButton buttonText={"+ Create"} onClick={handleOpenForm} />
       </div>
 
       <div className="task-board__content flex wrap">
@@ -62,16 +59,10 @@ const TaskBoard = () => {
       </div>
       <div>
         {isLoadMore && (
-          <TextButton
-            buttonText={"Load More"}
-            onClick={showMoreTasks}
-          />
+          <TextButton buttonText={"Load More"} onClick={showMoreTasks} />
         )}
         {isLoadLess && (
-          <TextButton
-            buttonText={"Load Less"}
-            onClick={showLessTasks}
-          />
+          <TextButton buttonText={"Load Less"} onClick={showLessTasks} />
         )}
       </div>
     </div>
