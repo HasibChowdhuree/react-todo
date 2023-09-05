@@ -1,10 +1,4 @@
-import { 
-  ADD_TASK,
-  DELETE_TASK,
-  SET_TASK_DONE,
-  EDIT_TASK,
-  SET_FILTER,
-} from "@store/types";
+import { ADD_TASK, DELETE_TASK, SET_TASK_DONE, EDIT_TASK } from "@store/types";
 
 export const addTask = (title) => ({
   type: ADD_TASK,
@@ -34,10 +28,3 @@ export const editTask = (taskId, newTitle) => ({
     newTitle,
   },
 });
-
-export const setFilterState = (filterLabel) => {
-  return {
-    type: SET_FILTER,
-    payload: filterLabel,
-  };
-};
