@@ -3,12 +3,18 @@ import { useSelector } from "react-redux";
 import TaskList from "@components/TaskList";
 import AddTask from "@components/Addtask";
 import { MAX_TASK_PER_PAGE } from "@utils/constants/values";
+import {
+  ALL_TASKS,
+  COMPLETED_TASKS,
+  INCOMPLETED_TASKS,
+} from "@utils/constants/texts";
 import TextButton from "@components/TextButton";
-import "./index.scss"
+import "./index.scss";
 
 const TaskBoard = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [visibleTaskRange, setVisibleTaskRange] = useState(MAX_TASK_PER_PAGE);
+  const [filter, setFilter] = useState(ALL_TASKS);
   const tasks = useSelector((state) => state.tasks);
 
   const handleOpenForm = () => {
@@ -44,9 +50,17 @@ const TaskBoard = () => {
   return (
     <div className="task-board">
       <div className="task-board__create-button-container margin-bottom">
+        <TextButton buttonText={"+ Create"} onClick={handleOpenForm} />
+      </div>
+      <div className="filter-buttons">
+        <TextButton buttonText={"All"} onClick={() => setFilter(ALL_TASKS)} />
         <TextButton
-          buttonText={"+ Create"}
-          onClick={handleOpenForm}
+          buttonText={"Completed"}
+          onClick={() => setFilter(COMPLETED_TASKS)}
+        />
+        <TextButton
+          buttonText={"Incompleted"}
+          onClick={() => setFilter(INCOMPLETED_TASKS)}
         />
       </div>
 
@@ -58,20 +72,15 @@ const TaskBoard = () => {
           tasks={tasks}
           visibleTaskRange={visibleTaskRange}
           isFormOpen={isFormOpen}
+          filter={filter}
         />
       </div>
       <div>
         {isLoadMore && (
-          <TextButton
-            buttonText={"Load More"}
-            onClick={showMoreTasks}
-          />
+          <TextButton buttonText={"Load More"} onClick={showMoreTasks} />
         )}
         {isLoadLess && (
-          <TextButton
-            buttonText={"Load Less"}
-            onClick={showLessTasks}
-          />
+          <TextButton buttonText={"Load Less"} onClick={showLessTasks} />
         )}
       </div>
     </div>
