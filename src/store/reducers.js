@@ -1,7 +1,15 @@
-import { ADD_TASK, DELETE_TASK, SET_TASK_DONE, EDIT_TASK } from "@store/types";
+import {
+  ADD_TASK,
+  DELETE_TASK,
+  SET_TASK_DONE,
+  EDIT_TASK,
+  ALL_TASKS,
+  SET_FILTER,
+} from "@store/types";
 
 const initialState = {
   tasks: [],
+  filterState: ALL_TASKS,
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +41,11 @@ const reducer = (state = initialState, action) => {
             ? { ...task, title: action.payload.newTitle }
             : task
         ),
+      };
+    case SET_FILTER:
+      return {
+        ...state,
+        filterState: action.payload,
       };
     default:
       return state;

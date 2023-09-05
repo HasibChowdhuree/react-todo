@@ -4,3 +4,4 @@ export const ALT_TEXT_SEARCH_ICON = "Search";
 export const ALT_TEXT_DELETE_ICON = "Delete";
 export const ALT_TEXT_DONE_ICON = "Done";
 export const ALT_TEXT_EDIT_ICON = "Edit";
+export const FILTER_TASKS_BUTTON_LABELS = ["All", "Incomplete", "Complete"];
