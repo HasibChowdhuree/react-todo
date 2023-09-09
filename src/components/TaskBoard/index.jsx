@@ -56,15 +56,42 @@ const TaskBoard = () => {
       <div className="top-bar">
         <TextButton buttonText={"+ Create"} onClick={handleOpenForm} />
         <div className="top-bar__filter-bar">
-          <TextButton buttonText={"All"} onClick={() => setFilter(ALL_TASKS)} />
-          <TextButton
-            buttonText={"Completed"}
-            onClick={() => setFilter(COMPLETED_TASKS)}
-          />
-          <TextButton
-            buttonText={"Incompleted"}
-            onClick={() => setFilter(INCOMPLETED_TASKS)}
-          />
+          <div
+            className={`${
+              filter === ALL_TASKS
+                ? "top-bar__filter-bar__button-active"
+                : "top-bar__filter-bar__button-inactive"
+            }`}
+          >
+            <TextButton
+              buttonText={"All"}
+              onClick={() => setFilter(ALL_TASKS)}
+            />
+          </div>
+          <div
+            className={`${
+              filter === COMPLETED_TASKS
+                ? "top-bar__filter-bar__button-active"
+                : "top-bar__filter-bar__button-inactive"
+            }`}
+          >
+            <TextButton
+              buttonText={"Completed"}
+              onClick={() => setFilter(COMPLETED_TASKS)}
+            />
+          </div>
+          <div
+            className={`${
+              filter === INCOMPLETED_TASKS
+                ? "top-bar__filter-bar__button-active"
+                : "top-bar__filter-bar__button-inactive"
+            }`}
+          >
+            <TextButton
+              buttonText={"Incompleted"}
+              onClick={() => setFilter(INCOMPLETED_TASKS)}
+            />
+          </div>
         </div>
       </div>
 
