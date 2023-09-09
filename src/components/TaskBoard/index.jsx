@@ -49,28 +49,23 @@ const TaskBoard = () => {
 
   return (
     <div className="task-board">
-      <div className="task-board__create-button-container margin-bottom">
-        <TextButton
-          buttonText={"+ Create"}
-          onClick={handleOpenForm}
-        />
-      </div>
-      <div className="filter-buttons">
-        <TextButton
-          buttonText={"All"}
-          onClick={() => setFilter(ALL_TASKS)}
-        />
-        <TextButton
-          buttonText={"Completed"}
-          onClick={() => setFilter(COMPLETED_TASKS)}
-        />
-        <TextButton
-          buttonText={"Incompleted"}
-          onClick={() => setFilter(INCOMPLETED_TASKS)}
-        />
+      <h1 className="task-board--title">Add Task</h1>
+      <div className="top-bar">
+        <TextButton buttonText={"+ Create"} onClick={handleOpenForm} />
+        <div className="top-bar__filter-bar">
+          <TextButton buttonText={"All"} onClick={() => setFilter(ALL_TASKS)} />
+          <TextButton
+            buttonText={"Completed"}
+            onClick={() => setFilter(COMPLETED_TASKS)}
+          />
+          <TextButton
+            buttonText={"Incompleted"}
+            onClick={() => setFilter(INCOMPLETED_TASKS)}
+          />
+        </div>
       </div>
 
-      <div className="task-board__content flex wrap">
+      <div className="task-board__container">
         {isFormOpen && (
           <AddTask isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
         )}

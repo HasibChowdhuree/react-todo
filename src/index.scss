@@ -15,26 +15,7 @@ $white: #ffffff;
   font-family: "Roboto", sans-serif;
 }
 
-.flex {
-  display: flex;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.align-center {
-  align-items: center;
-}
-
-.wrap {
-  flex-wrap: wrap;
-}
-
-.margin-bottom-10 {
-  margin-bottom: 0.625rem;
+body {
+  background-color: $light-purple;
+  font-family: "Roboto", sans-serif;
 }
