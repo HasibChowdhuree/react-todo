@@ -3,10 +3,13 @@ import { useSelector } from "react-redux";
 import TaskList from "@components/TaskList";
 import AddTask from "@components/Addtask";
 import { MAX_TASK_PER_PAGE } from "@utils/constants/values";
+import { ICON_EMPTY_PAGE } from "@utils/constants/icons";
+
 import {
   ALL_TASKS,
   COMPLETED_TASKS,
   INCOMPLETED_TASKS,
+  ALT_TEXT_EMPTY_PAE_ICON,
 } from "@utils/constants/texts";
 import TextButton from "@components/TextButton";
 import "./index.scss";
@@ -66,6 +69,21 @@ const TaskBoard = () => {
       </div>
 
       <div className="task-board__container">
+        {tasks.length === 0 && (
+          <div className="empty-page">
+            <div className="empty-page__container">
+              <img
+                className="empty-page__container--icon"
+                onClick={handleOpenForm}
+                src={ICON_EMPTY_PAGE}
+                alt={ALT_TEXT_EMPTY_PAE_ICON}
+              />
+              <h1 className="empty-page__container--text">
+                You didn't add any task. Please, add one.
+              </h1>
+            </div>
+          </div>
+        )}
         {isFormOpen && (
           <AddTask isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
         )}
