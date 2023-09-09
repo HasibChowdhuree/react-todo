@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { addTask } from "@store/actions";
-import { sanitizeText } from "@utils/helpers/sanitizeText"
+import { sanitizeText } from "@utils/helpers/sanitizeText";
 import {
   PLACEHOLDER_TEXT_ADD_TASK,
   ALT_TEXT_DELETE_ICON,
@@ -36,7 +36,7 @@ const AddTask = ({ setIsFormOpen }) => {
   };
 
   function handleChangeText(event) {
-    setTitle(event.target.value)
+    setTitle(event.target.value);
   }
 
   return (
@@ -51,13 +51,12 @@ const AddTask = ({ setIsFormOpen }) => {
         />
         {error && <small className="task-form__error">{error}</small>}
         <TextButton buttonText={"Add Task"} />
+        <IconButton
+          onClick={handleCloseForm}
+          alt={ALT_TEXT_DELETE_ICON}
+          src={ICON_DELETE}
+        />
       </form>
-      <IconButton
-        onClick={handleCloseForm}
-        alt={ALT_TEXT_DELETE_ICON}
-        src={ICON_DELETE}
-      />
-
     </div>
   );
 };

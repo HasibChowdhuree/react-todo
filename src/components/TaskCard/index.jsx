@@ -67,16 +67,32 @@ const TaskCard = ({ task }) => {
   return (
     <>
       {editMode ? (
-        <div className="task-form">
+        <div className="task-card">
           <textarea
-            className="task-form__textarea"
+            className="task-card__textarea"
             type="text"
             value={editedTitle}
             onChange={handleChange}
           />
-          {error && <small className="task-form__error">{error}</small>}
-          <TextButton buttonText={"Save"} onClick={handleSave} />
-          <TextButton buttonText={"Cancel"} onClick={handleCancel} />
+          <div className="task-card__bottom">
+            <div className="task-card__button-container">
+              <TextButton
+                className="button"
+                buttonText={"Save"}
+                onClick={handleSave}
+              />
+              <IconButton
+                onClick={handleDone}
+                alt={ALT_TEXT_DONE_ICON}
+                src={ICON_DONE}
+              />
+              <IconButton
+                onClick={handleDelete}
+                alt={ALT_TEXT_DELETE_ICON}
+                src={ICON_DELETE}
+              />
+            </div>
+          </div>
         </div>
       ) : (
         <div className="task-card">
