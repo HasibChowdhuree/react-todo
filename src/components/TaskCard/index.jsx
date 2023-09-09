@@ -21,7 +21,6 @@ const TaskCard = ({ task }) => {
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false);
   const [editedTitle, setEditedTitle] = useState(task.title);
-  const [error, setError] = useState(null);
 
   const handleDelete = () => {
     dispatch(deleteTask(id));
@@ -47,7 +46,7 @@ const TaskCard = ({ task }) => {
   const handleSave = () => {
     const sanitizedEditedTitle = sanitizeText(editedTitle);
     if (sanitizedEditedTitle === "") {
-      setError("Invalid Text");
+    displayToastNotification("Invalid Title", "danger");
       return;
     }
     dispatch(editTask(id, sanitizedEditedTitle));

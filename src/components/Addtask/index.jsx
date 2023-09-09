@@ -16,13 +16,12 @@ import "./index.scss";
 const AddTask = ({ setIsFormOpen }) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
-  const [error, setError] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const sanitizedTitle = sanitizeText(title);
     if (sanitizedTitle === "") {
-      setError("Invalid Text");
+      displayToastNotification("Invalid Title", "danger");
       return;
     }
     dispatch(addTask(sanitizedTitle));
@@ -49,13 +48,16 @@ const AddTask = ({ setIsFormOpen }) => {
           value={title}
           onChange={handleChangeText}
         />
-        {error && <small className="task-form__error">{error}</small>}
-        <TextButton buttonText={"Add Task"} />
-        <IconButton
-          onClick={handleCloseForm}
-          alt={ALT_TEXT_DELETE_ICON}
-          src={ICON_DELETE}
-        />
+        <div className="task-card__bottom">
+          <div className="task-card__button-container">
+            <TextButton buttonText={"Add Task"} />
+            <IconButton
+              onClick={handleCloseForm}
+              alt={ALT_TEXT_DELETE_ICON}
+              src={ICON_DELETE}
+            />
+          </div>
+        </div>
       </form>
     </div>
   );
