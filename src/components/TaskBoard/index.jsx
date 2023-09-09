@@ -76,7 +76,7 @@ const TaskBoard = () => {
           filter={filter}
         />
       </div>
-      <div>
+      <div className="pagination__container">
         {isLoadMore && (
           <TextButton buttonText={"Load More"} onClick={showMoreTasks} />
         )}
