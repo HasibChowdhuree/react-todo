@@ -1,4 +1,4 @@
-import { ADD_TASK, DELETE_TASK } from "@store/types";
+import { ADD_TASK, DELETE_TASK, SET_TASK_DONE } from "@store/types";
 
 export const addTask = (title) => ({
   type: ADD_TASK,
@@ -6,10 +6,17 @@ export const addTask = (title) => ({
     id: Date.now().toString(),
     title: title,
     createdDate: new Date(),
+    completedDate: null,
+    isDone: false,
   },
 });
 
 export const deleteTask = (taskId) => ({
   type: DELETE_TASK,
+  payload: taskId,
+});
+
+export const setTaskDone = (taskId) => ({
+  type: SET_TASK_DONE,
   payload: taskId,
 });
